@@ -2,13 +2,12 @@ import { Card, Button, Rating } from './componentExport';
 import { useState, useEffect } from 'react';
 import { ACTIONS } from '../constant/Actions';
 import { useFeedback } from '../context/feedback-context';
-import { v4 as uuidv4 } from 'uuid';
 const FeedbackForm = () => {
   const [text, setText] = useState('');
   const [btnDisabled, setBtnDisbled] = useState(true);
   const [message, setMessage] = useState(null);
   const [rating, setRating] = useState(10);
-  const { dispatch } = useFeedback();
+  const { dispatch, feedbackEdit } = useFeedback();
   useEffect(() => {
     if (text === '' || text.length === 0) {
       setBtnDisbled(true);
@@ -21,15 +20,29 @@ const FeedbackForm = () => {
       setBtnDisbled(false);
     }
   }, [text]);
+  useEffect(() => {
+    if (feedbackEdit?.edit === true) {
+      setBtnDisbled(false);
+      setRating(feedbackEdit.item.rating);
+      setText(feedbackEdit.item.text);
+    }
+    console.log(feedbackEdit);
+  }, [feedbackEdit]);
   const handleSubmit = (e) => {
     e.preventDefault();
     if (text.trim().length > 10) {
       const newFeedback = {
-        id: uuidv4(),
         text,
         rating,
       };
-      dispatch({ type: ACTIONS.ADD_FEEDBACK, payload: { newFeedback } });
+      if (feedbackEdit.edit === true) {
+        dispatch({
+          type: ACTIONS.UPDATE_FEEDBACK,
+          payload: { updateId: feedbackEdit.item.id, updateItem: newFeedback },
+        });
+      } else {
+        dispatch({ type: ACTIONS.ADD_FEEDBACK, payload: { newFeedback } });
+      }
       setText('');
     }
   };

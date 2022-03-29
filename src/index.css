@@ -104,9 +104,10 @@ header {
   border-radius: 50%;
   transform: translate(-50%, -50%);
   cursor: pointer;
+  background: #eee;
 }
 
-.rating li:hover,
+.rating li label:hover,
 .num-display {
   background: var(--text-pink);
   color: var(--text-white);

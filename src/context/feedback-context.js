@@ -1,13 +1,22 @@
 import { useReducer } from 'react';
-import { useContext, createContext } from 'react';
+import { useContext, createContext, useState } from 'react';
 import { FeedbackData } from '../data/feedbackData';
 import { feedbackReducer } from './feedback-reducer';
 const FeedbackContext = createContext();
 
 export const FeedbackProvider = ({ children }) => {
   const [feedbacks, dispatch] = useReducer(feedbackReducer, FeedbackData);
+  const [feedbackEdit, setFeedbackEdit] = useState({
+    items: {},
+    edit: false,
+  });
+  const editFeedback = (item) => {
+    setFeedbackEdit({ item, edit: true });
+  };
   return (
-    <FeedbackContext.Provider value={{ feedbacks, dispatch }}>
+    <FeedbackContext.Provider
+      value={{ feedbacks, dispatch, editFeedback, feedbackEdit }}
+    >
       {children}
     </FeedbackContext.Provider>
   );
