@@ -4,7 +4,6 @@
 :root {
   --text-purple: #202142;
   --text-purple-light: #563089;
-  --text-pink: #ff6a95;
   --text-white: #fff;
   --text-grey: #cccccc;
   --text-black: #333;
@@ -28,9 +27,21 @@ html {
 body {
   font-family: 'Poppins', sans-serif;
   background-color: var(--text-purple);
-  color: var(--text-pink);
+  color: var(--text-gold);
   font-size: 1.5rem;
   line-height: 1.6;
+}
+body::-webkit-scrollbar {
+  width: 1rem;
+}
+
+body::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px var(--nav-color);
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: var(--text-gold);
+  outline: 1px solid var(--text-purple-light);
 }
 
 ul {
@@ -52,7 +63,28 @@ header {
   margin-bottom: 3rem;
   background: var(--nav-color);
 }
+footer {
+  width: 100%;
+  background: var(--nav-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+  bottom: -85px;
+}
 
+footer .links {
+  display: flex;
+  justify-content: space-evenly;
+  width: 50%;
+  margin: 1rem;
+}
+footer .icons {
+  color: #ddab16;
+  font-size: 6rem;
+  cursor: pointer;
+}
 .card {
   background-color: var(--text-white);
   color: var(--text-black);
@@ -104,12 +136,12 @@ header {
   border-radius: 50%;
   transform: translate(-50%, -50%);
   cursor: pointer;
-  background: #eee;
+  background: var(--text-grey);
 }
 
 .rating li label:hover,
 .num-display {
-  background: var(--text-pink);
+  background: var(--text-gold);
   color: var(--text-white);
 }
 
@@ -118,7 +150,7 @@ header {
 }
 
 [type='radio']:checked ~ label {
-  background: var(--text-pink);
+  background: var(--text-gold);
   color: var(--text-white);
 }
 
@@ -181,7 +213,7 @@ input:focus {
 }
 
 .btn-secondary {
-  background: var(--text-pink);
+  background: var(--text-gold);
 }
 
 .btn:hover {

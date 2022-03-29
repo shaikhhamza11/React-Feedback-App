@@ -10,8 +10,8 @@ export const FeedbackProvider = ({ children }) => {
     items: {},
     edit: false,
   });
-  const editFeedback = (item) => {
-    setFeedbackEdit({ item, edit: true });
+  const editFeedback = (item, edit) => {
+    setFeedbackEdit({ item, edit });
   };
   return (
     <FeedbackContext.Provider

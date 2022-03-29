@@ -18,7 +18,7 @@ const FeedbackItem = ({ feedback, dispatch }) => {
       >
         <FaTimes color='purple' />
       </button>
-      <button className='edit' onClick={() => editFeedback(feedback)}>
+      <button className='edit' onClick={() => editFeedback(feedback, true)}>
         <FaEdit color='purple' />
       </button>
       <div className='text-display'>{feedback.text}</div>

@@ -3,6 +3,7 @@ import {
   FeedbackList,
   FeedbackStats,
   FeedbackForm,
+  Footer,
 } from './components/componentExport';
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
         <FeedbackStats />
         <FeedbackList />
       </div>
+      <Footer />
     </div>
   );
 };

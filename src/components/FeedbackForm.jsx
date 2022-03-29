@@ -7,7 +7,7 @@ const FeedbackForm = () => {
   const [btnDisabled, setBtnDisbled] = useState(true);
   const [message, setMessage] = useState(null);
   const [rating, setRating] = useState(10);
-  const { dispatch, feedbackEdit } = useFeedback();
+  const { dispatch, feedbackEdit, editFeedback } = useFeedback();
   useEffect(() => {
     if (text === '' || text.length === 0) {
       setBtnDisbled(true);
@@ -40,6 +40,7 @@ const FeedbackForm = () => {
           type: ACTIONS.UPDATE_FEEDBACK,
           payload: { updateId: feedbackEdit.item.id, updateItem: newFeedback },
         });
+        editFeedback({}, false);
       } else {
         dispatch({ type: ACTIONS.ADD_FEEDBACK, payload: { newFeedback } });
       }
